@@ -12,7 +12,8 @@ app = FastAPI(title="Chat App", version="0.1.0")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "https://api.shadowstream.space",
+        "https://shadowstream.space",
+        "https://www.shadowstream.space",
     ],
     allow_credentials=True,
     allow_methods=["*"],
