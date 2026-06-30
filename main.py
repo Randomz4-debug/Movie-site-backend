@@ -2,6 +2,7 @@ from fastapi import FastAPI, Request
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
+import requests
 import logging
 
 
@@ -10,9 +11,11 @@ app = FastAPI(title="Chat App", version="0.1.0")
 
 # app.mount("/static", StaticFiles(directory="static"), name="static")
 
-@app.post("/api/hello", include_in_schema=False)
-async def get(request: Request):
-    return {"message": "Hello World"}
+@app.get("/api/movies")
+async def get_movies(name: str = "popular", type: str = "shows"):
+    url = f"https://api.tvmaze.com/search/{type}?q={name}"
+    response = requests.get(url)
+    return response.json()
 
 if __name__ == "__main__":
     import uvicorn
