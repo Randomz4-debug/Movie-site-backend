@@ -11,7 +11,7 @@ app = FastAPI(title="Chat App", version="0.1.0")
 
 # app.mount("/static", StaticFiles(directory="static"), name="static")
 
-@app.get("/api/movies")
+@app.get("/movies")
 async def get_movies(name: str = "popular", type: str = "shows"):
     url = f"https://api.tvmaze.com/search/{type}?q={name}"
     response = requests.get(url)
