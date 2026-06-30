@@ -12,8 +12,7 @@ app = FastAPI(title="Chat App", version="0.1.0")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "https://shadowstream.space",
-        "https://www.shadowstream.space",
+        "https://api.shadowstream.space",
     ],
     allow_credentials=True,
     allow_methods=["*"],
@@ -23,7 +22,7 @@ app.add_middleware(
 
 # app.mount("/static", StaticFiles(directory="static"), name="static")
 
-@app.post("/movies")
+@app.get("/movies")
 async def get_movies(name: str = "popular", type: str = "shows"):
     url = f"https://api.tvmaze.com/search/{type}?q={name}"
     response = requests.get(url)
